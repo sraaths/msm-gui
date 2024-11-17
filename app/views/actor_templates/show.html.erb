@@ -9,26 +9,46 @@
 </div>
 
 <div>
-<a href="/delete_actor/<%= @the_actor.id %>">Delete actor</a>
+  <a href="/delete_actor/<%= @the_actor.id %>">
+    Delete actor
+  </a>
 </div>
 
 <hr>
-<form action="/modify_actors_record/<%= @the_actor.id %>" method="post">
+
+<form action="/modify_actor/<%= @the_actor.id %>" method="post">
   <div>
-    <label for="name_field">Name</label>
-    <input id="name_field" type="text" name="the_name" value="<%= @the_actor.name %>">
+    <label for="name_box">
+      Name
+    </label>
+
+    <input type="text" id="name_box" name="query_name" value="<%= @the_actor.name %>">
   </div>
+
   <div>
-    <label for="dob_field">Dob</label>
-    <input id="dob_field" type="text" name="the_dob" value="<%= @the_actor.dob %>">
+    <label for="dob_box">
+      Dob
+    </label>
+
+    <input type="date" id="dob_box" name="query_dob" value="<%= @the_actor.dob %>">
   </div>
+
   <div>
-    <label for="bio_field">Bio</label>
-    <input id="bio_field" type="text" name="the_bio" value="<%= @the_actor.bio %>">
+    <label for="bio_box">
+      Bio
+    </label>
+
+    <textarea id="bio_box" name="query_bio" rows="3"><%= @the_actor.bio %></textarea>
   </div>
+
   <div>
-    <label for="image_field">Image</label>
-    <input id="image_field" type="text" name="the_image" value="<%= @the_actor.image %>">
+    <label for="image_box">
+      Image
+    </label>
+
+    <input type="text" id="image_box" name="query_image" value="<%= @the_actor.image %>">
+  </div>
+
   <button>
     Update actor
   </button>
@@ -69,14 +89,14 @@
     Created at
   </dt>
   <dd>
-    <%= @the_actor.created_at %>
+    <%= time_ago_in_words(@the_actor.created_at) %> ago
   </dd>
 
   <dt>
     Updated at
   </dt>
   <dd>
-    <%= @the_actor.updated_at %>
+    <%= time_ago_in_words(@the_actor.updated_at) %> ago
   </dd>
 </dl>
 
@@ -133,11 +153,7 @@
         
         <% the_director = matching_directors.at(0) %>
 
-         <% if the_director == nil %>
-      Uh oh! We weren't able to find a director for this movie.
-    <% else %>
-      <%= the_director.name %>
-    <% end %>
+        <%= the_director.name %>
       </td>
 
       <td>
