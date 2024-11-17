@@ -2,9 +2,37 @@
   Actor #<%= @the_actor.id %> details
 </h1>
 
-<a href="/actors">
-  Go back
-</a>
+<div>
+  <a href="/actors">
+    Go back
+  </a>
+</div>
+
+<div>
+<a href="/delete_actor/<%= @the_actor.id %>">Delete actor</a>
+</div>
+
+<hr>
+<form action="/modify_actors_record/<%= @the_actor.id %>" method="post">
+  <div>
+    <label for="name_field">Name</label>
+    <input id="name_field" type="text" name="the_name" value="<%= @the_actor.name %>">
+  </div>
+  <div>
+    <label for="dob_field">Dob</label>
+    <input id="dob_field" type="text" name="the_dob" value="<%= @the_actor.dob %>">
+  </div>
+  <div>
+    <label for="bio_field">Bio</label>
+    <input id="bio_field" type="text" name="the_bio" value="<%= @the_actor.bio %>">
+  </div>
+  <div>
+    <label for="image_field">Image</label>
+    <input id="image_field" type="text" name="the_image" value="<%= @the_actor.image %>">
+  <button>
+    Update actor
+  </button>
+</form>
 
 <hr>
 
@@ -105,7 +133,11 @@
         
         <% the_director = matching_directors.at(0) %>
 
-        <%= the_director.name %>
+         <% if the_director == nil %>
+      Uh oh! We weren't able to find a director for this movie.
+    <% else %>
+      <%= the_director.name %>
+    <% end %>
       </td>
 
       <td>
